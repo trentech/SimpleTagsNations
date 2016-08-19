@@ -62,7 +62,7 @@ public class RankTag extends Tag {
 
 		return Optional.empty();
 	}
-	
+
 	private static void createDefault() {
 		String name = "simpletags.DEFAULT";
 		String tag = "&9[%RANK%]";
@@ -73,7 +73,7 @@ public class RankTag extends Tag {
 
 		create(name, tag);
 	}
-	
+
 	public static void init() {
 		ConcurrentHashMap<String, RankTag> hash = new ConcurrentHashMap<>();
 
@@ -82,7 +82,7 @@ public class RankTag extends Tag {
 		}
 
 		cache = hash;
-		
+
 		createDefault();
 	}
 }

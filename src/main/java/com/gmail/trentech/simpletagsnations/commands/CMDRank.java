@@ -25,12 +25,12 @@ import com.gmail.trentech.simpletagsnations.utils.Help;
 public class CMDRank implements CommandExecutor {
 
 	public static CommandSpec cmd = CommandSpec.builder()
-		    .permission("simpletags.cmd.tag.rank")
-		    .child(CMDRankDefault.cmd, "default", "d")
-		    .arguments(GenericArguments.optional(GenericArguments.string(Text.of("name"))), GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
-		    .executor(new CMDRank())
-		    .build();
-	
+			.permission("simpletags.cmd.tag.rank")
+			.child(CMDRankDefault.cmd, "default", "d")
+			.arguments(GenericArguments.optional(GenericArguments.string(Text.of("name"))), GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
+			.executor(new CMDRank())
+			.build();
+
 	public CMDRank() {
 		Help help = new Help("rank", "rank", " View and edit rank tags");
 		help.setSyntax(" /tag rank <rank> <tag>\n /t g <rank> <tag>");
@@ -44,9 +44,10 @@ public class CMDRank implements CommandExecutor {
 			src.sendMessage(Text.of(TextColors.YELLOW, "/tag rank <rank> <tag>"));
 			return CommandResult.empty();
 		}
-		String name = args.<String> getOne("name").get();
+		String name = args.<String>getOne("name").get();
 
-		if(!name.equalsIgnoreCase("citizen") && !name.equalsIgnoreCase("minister") && !name.equalsIgnoreCase("president")) {
+		if (!name.equalsIgnoreCase("citizen") && !name.equalsIgnoreCase("minister")
+				&& !name.equalsIgnoreCase("president")) {
 			src.sendMessage(Text.of(TextColors.DARK_RED, "Rank does not exist!"));
 			return CommandResult.empty();
 		}
@@ -67,7 +68,8 @@ public class CMDRank implements CommandExecutor {
 			if (src instanceof Player) {
 				Builder pages = Sponge.getServiceManager().provide(PaginationService.class).get().builder();
 
-				pages.title(Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Rank")).build());
+				pages.title(
+						Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Rank")).build());
 
 				pages.contents(list);
 
@@ -80,7 +82,7 @@ public class CMDRank implements CommandExecutor {
 
 			return CommandResult.success();
 		}
-		String tag = args.<String> getOne("tag").get();
+		String tag = args.<String>getOne("tag").get();
 
 		if (tag.equalsIgnoreCase("reset")) {
 			if (optionalRankTag.isPresent()) {
@@ -98,7 +100,8 @@ public class CMDRank implements CommandExecutor {
 			RankTag.create(name, tag);
 		}
 
-		src.sendMessage(Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
+		src.sendMessage(
+				Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
 
 		return CommandResult.success();
 	}

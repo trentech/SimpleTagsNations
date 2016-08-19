@@ -23,11 +23,11 @@ import com.gmail.trentech.simpletagsnations.tags.NationTag;
 public class CMDNationDefault implements CommandExecutor {
 
 	public static CommandSpec cmd = CommandSpec.builder()
-		    .permission("simpletags.cmd.tag.nation.default")
-		    .arguments(GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
-		    .executor(new CMDNationDefault())
-		    .build();
-	
+			.permission("simpletags.cmd.tag.nation.default")
+			.arguments(GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
+			.executor(new CMDNationDefault())
+			.build();
+
 	@Override
 	public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 		NationTag defaultTag = NationTag.getDefault().get();
@@ -36,12 +36,14 @@ public class CMDNationDefault implements CommandExecutor {
 			List<Text> list = new ArrayList<>();
 
 			list.add(Text.of(TextColors.GREEN, "Current Tag: ", TextColors.RESET, defaultTag.getTag()));
-			list.add(Text.of(Text.of(TextColors.GREEN, "Update Tag: ", TextColors.YELLOW, "/tag nation default <tag>")));
+			list.add(
+					Text.of(Text.of(TextColors.GREEN, "Update Tag: ", TextColors.YELLOW, "/tag nation default <tag>")));
 
 			if (src instanceof Player) {
 				Builder pages = Sponge.getServiceManager().provide(PaginationService.class).get().builder();
 
-				pages.title(Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Nation")).build());
+				pages.title(Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Nation"))
+						.build());
 
 				pages.contents(list);
 
@@ -54,11 +56,12 @@ public class CMDNationDefault implements CommandExecutor {
 
 			return CommandResult.success();
 		}
-		String tag = args.<String> getOne("tag").get();
+		String tag = args.<String>getOne("tag").get();
 
 		defaultTag.setTag(tag);
 
-		src.sendMessage(Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
+		src.sendMessage(
+				Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
 
 		return CommandResult.success();
 	}

@@ -62,7 +62,7 @@ public class NationTag extends Tag {
 
 		return Optional.empty();
 	}
-	
+
 	private static void createDefault() {
 		String name = "simpletags.DEFAULT";
 		String tag = "&b[%NATION%]";
@@ -73,7 +73,7 @@ public class NationTag extends Tag {
 
 		create(name, tag);
 	}
-	
+
 	public static void init() {
 		ConcurrentHashMap<String, NationTag> hash = new ConcurrentHashMap<>();
 
@@ -82,7 +82,7 @@ public class NationTag extends Tag {
 		}
 
 		cache = hash;
-		
+
 		createDefault();
 	}
 }

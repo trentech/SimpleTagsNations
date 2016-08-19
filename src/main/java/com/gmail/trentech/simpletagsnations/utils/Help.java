@@ -82,7 +82,8 @@ public class Help {
 					if (src instanceof Player) {
 						Builder pages = Sponge.getServiceManager().provide(PaginationService.class).get().builder();
 
-						pages.title(Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, help.getCommand().toLowerCase())).build());
+						pages.title(Text.builder().color(TextColors.DARK_GREEN)
+								.append(Text.of(TextColors.GREEN, help.getCommand().toLowerCase())).build());
 
 						pages.contents(list);
 

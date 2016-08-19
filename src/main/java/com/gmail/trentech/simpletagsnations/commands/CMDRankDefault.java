@@ -23,11 +23,11 @@ import com.gmail.trentech.simpletagsnations.tags.RankTag;
 public class CMDRankDefault implements CommandExecutor {
 
 	public static CommandSpec cmd = CommandSpec.builder()
-		    .permission("simpletags.cmd.tag.rank.default")
-		    .arguments(GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
-		    .executor(new CMDRankDefault())
-		    .build();
-	
+			.permission("simpletags.cmd.tag.rank.default")
+			.arguments(GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
+			.executor(new CMDRankDefault())
+			.build();
+
 	@Override
 	public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
 		RankTag defaultTag = RankTag.getDefault().get();
@@ -41,7 +41,8 @@ public class CMDRankDefault implements CommandExecutor {
 			if (src instanceof Player) {
 				Builder pages = Sponge.getServiceManager().provide(PaginationService.class).get().builder();
 
-				pages.title(Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Rank")).build());
+				pages.title(
+						Text.builder().color(TextColors.DARK_GREEN).append(Text.of(TextColors.GREEN, "Rank")).build());
 
 				pages.contents(list);
 
@@ -54,11 +55,12 @@ public class CMDRankDefault implements CommandExecutor {
 
 			return CommandResult.success();
 		}
-		String tag = args.<String> getOne("tag").get();
+		String tag = args.<String>getOne("tag").get();
 
 		defaultTag.setTag(tag);
 
-		src.sendMessage(Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
+		src.sendMessage(
+				Text.of(TextColors.DARK_GREEN, "Tag changed to ", TextSerializers.FORMATTING_CODE.deserialize(tag)));
 
 		return CommandResult.success();
 	}

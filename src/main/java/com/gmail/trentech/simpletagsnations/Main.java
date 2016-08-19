@@ -14,12 +14,13 @@ import com.gmail.trentech.simpletagsnations.commands.CMDNation;
 import com.gmail.trentech.simpletagsnations.commands.CMDRank;
 import com.gmail.trentech.simpletagsnations.tags.NationTag;
 import com.gmail.trentech.simpletagsnations.tags.RankTag;
+import com.gmail.trentech.simpletagsnations.utils.ConfigManager;
 import com.gmail.trentech.simpletagsnations.utils.Resource;
 
 import me.flibio.updatifier.Updatifier;
 
 @Updatifier(repoName = Resource.NAME, repoOwner = Resource.AUTHOR, version = Resource.VERSION)
-@Plugin(id = Resource.ID, name = Resource.NAME, version = Resource.VERSION, description = Resource.DESCRIPTION, authors = Resource.AUTHOR, url = Resource.URL, dependencies = { @Dependency(id = "Updatifier", optional = true), @Dependency(id = "com.arckenver.nations", optional = false), @Dependency(id = "simpletags", optional = false) })
+@Plugin(id = Resource.ID, name = Resource.NAME, version = Resource.VERSION, description = Resource.DESCRIPTION, authors = Resource.AUTHOR, url = Resource.URL, dependencies = {@Dependency(id = "Updatifier", optional = true), @Dependency(id = "com.arckenver.nations", optional = false), @Dependency(id = "simpletags", optional = false) })
 public class Main {
 
 	private static Logger log;
@@ -37,6 +38,8 @@ public class Main {
 		com.gmail.trentech.simpletags.Main.registerCommand(CMDNation.cmd, "nation", "n");
 		com.gmail.trentech.simpletags.Main.registerTag(NationTag.class);
 		com.gmail.trentech.simpletags.Main.registerCommand(CMDRank.cmd, "rank", "r");
+
+		ConfigManager.get().init();
 	}
 
 	@Listener
