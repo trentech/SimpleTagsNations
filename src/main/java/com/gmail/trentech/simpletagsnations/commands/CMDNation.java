@@ -41,8 +41,7 @@ public class CMDNation implements CommandExecutor {
 
 		if (src instanceof Player) {
 			if (!nation.isMinister(((Player) src).getUniqueId()) && !nation.isMinister(((Player) src).getUniqueId())) {
-				src.sendMessage(Text.of(TextColors.DARK_RED, "Only the president, minister and console can change nations tag"));
-				return CommandResult.empty();
+				throw new CommandException(Text.of(TextColors.RED, "Only the president, minister and console can change nations tag"));
 			}
 		}
 
