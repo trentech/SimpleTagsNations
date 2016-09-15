@@ -15,9 +15,9 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
 import com.arckenver.nations.object.Nation;
+import com.gmail.trentech.simpletags.utils.Help;
 import com.gmail.trentech.simpletagsnations.commands.elements.NationElement;
 import com.gmail.trentech.simpletagsnations.tags.NationTag;
-import com.gmail.trentech.simpletagsnations.utils.Help;
 
 public class CMDNation implements CommandExecutor {
 

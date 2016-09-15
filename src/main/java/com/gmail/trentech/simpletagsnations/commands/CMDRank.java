@@ -13,9 +13,9 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
+import com.gmail.trentech.simpletags.utils.Help;
 import com.gmail.trentech.simpletagsnations.commands.elements.RankElement;
 import com.gmail.trentech.simpletagsnations.tags.RankTag;
-import com.gmail.trentech.simpletagsnations.utils.Help;
 
 public class CMDRank implements CommandExecutor {
 
