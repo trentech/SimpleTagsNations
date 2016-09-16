@@ -30,6 +30,7 @@ public class CMDNation implements CommandExecutor {
 
 	public CMDNation() {
 		Help help = new Help("nation", "nation", " View and edit nation tags");
+		help.setPermission("simpletags.cmd.tag.nation");
 		help.setSyntax(" /tag nation <nation> <tag>\n /t g <nation> <tag>");
 		help.setExample(" /tag nation admin\n /tag nation admin &e[BOSS]\n /tag nation admin reset");
 		help.save();
@@ -41,7 +42,7 @@ public class CMDNation implements CommandExecutor {
 
 		if (src instanceof Player) {
 			if (!nation.isMinister(((Player) src).getUniqueId()) && !nation.isMinister(((Player) src).getUniqueId())) {
-				throw new CommandException(Text.of(TextColors.RED, "Only the president, minister and console can change nations tag"));
+				throw new CommandException(Text.of(TextColors.RED, "Only the president, minister and console can change nations tag"), false);
 			}
 		}
 

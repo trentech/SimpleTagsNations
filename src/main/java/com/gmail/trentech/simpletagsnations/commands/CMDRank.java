@@ -28,6 +28,7 @@ public class CMDRank implements CommandExecutor {
 
 	public CMDRank() {
 		Help help = new Help("rank", "rank", " View and edit rank tags");
+		help.setPermission("simpletags.cmd.tag.rank");
 		help.setSyntax(" /tag rank <rank> <tag>\n /t g <rank> <tag>");
 		help.setExample(" /tag rank admin\n /tag rank admin &e[BOSS]\n /tag rank admin reset");
 		help.save();
