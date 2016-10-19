@@ -15,7 +15,6 @@ import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
 import com.arckenver.nations.object.Nation;
-import com.gmail.trentech.simpletags.utils.Help;
 import com.gmail.trentech.simpletagsnations.commands.elements.NationElement;
 import com.gmail.trentech.simpletagsnations.tags.NationTag;
 
@@ -27,14 +26,6 @@ public class CMDNation implements CommandExecutor {
 			.arguments(new NationElement(Text.of("nation")), GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
 			.executor(new CMDNation())
 			.build();
-
-	public CMDNation() {
-		Help help = new Help("nation", "nation", " View and edit nation tags");
-		help.setPermission("simpletags.cmd.tag.nation");
-		help.setSyntax(" /tag nation <nation> <tag>\n /t g <nation> <tag>");
-		help.setExample(" /tag nation admin\n /tag nation admin &e[BOSS]\n /tag nation admin reset");
-		help.save();
-	}
 
 	@Override
 	public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {

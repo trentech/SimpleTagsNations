@@ -13,7 +13,6 @@ import org.spongepowered.api.text.Text;
 import org.spongepowered.api.text.format.TextColors;
 import org.spongepowered.api.text.serializer.TextSerializers;
 
-import com.gmail.trentech.simpletags.utils.Help;
 import com.gmail.trentech.simpletagsnations.commands.elements.RankElement;
 import com.gmail.trentech.simpletagsnations.tags.RankTag;
 
@@ -25,14 +24,6 @@ public class CMDRank implements CommandExecutor {
 			.arguments(new RankElement(Text.of("rank")), GenericArguments.optional(GenericArguments.string(Text.of("tag"))))
 			.executor(new CMDRank())
 			.build();
-
-	public CMDRank() {
-		Help help = new Help("rank", "rank", " View and edit rank tags");
-		help.setPermission("simpletags.cmd.tag.rank");
-		help.setSyntax(" /tag rank <rank> <tag>\n /t g <rank> <tag>");
-		help.setExample(" /tag rank admin\n /tag rank admin &e[BOSS]\n /tag rank admin reset");
-		help.save();
-	}
 
 	@Override
 	public CommandResult execute(CommandSource src, CommandContext args) throws CommandException {
