@@ -18,7 +18,6 @@ import org.spongepowered.api.plugin.PluginContainer;
 import com.gmail.trentech.helpme.Help;
 import com.gmail.trentech.simpletagsnations.commands.CMDNation;
 import com.gmail.trentech.simpletagsnations.commands.CMDRank;
-
 import com.gmail.trentech.simpletagsnations.tags.NationTag;
 import com.gmail.trentech.simpletagsnations.tags.RankTag;
 import com.gmail.trentech.simpletagsnations.utils.ConfigManager;
@@ -28,7 +27,13 @@ import com.google.inject.Inject;
 import me.flibio.updatifier.Updatifier;
 
 @Updatifier(repoName = Resource.NAME, repoOwner = Resource.AUTHOR, version = Resource.VERSION)
-@Plugin(id = Resource.ID, name = Resource.NAME, version = Resource.VERSION, description = Resource.DESCRIPTION, authors = Resource.AUTHOR, url = Resource.URL, dependencies = {@Dependency(id = "Updatifier", optional = true), @Dependency(id = "com.arckenver.nations", optional = false), @Dependency(id = "simpletags", optional = false), @Dependency(id = "helpme", optional = true) })
+@Plugin(id = Resource.ID, name = Resource.NAME, version = Resource.VERSION, description = Resource.DESCRIPTION, authors = Resource.AUTHOR, url = Resource.URL, 
+	dependencies = {
+		@Dependency(id = "Updatifier", optional = true), 
+		@Dependency(id = "nations", optional = false), 
+		@Dependency(id = "simpletags", optional = false), 
+		@Dependency(id = "helpme", optional = true) 
+	})
 public class Main {
 
 	@Inject @ConfigDir(sharedRoot = false)
@@ -50,6 +55,8 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+
 	}
 
 	@Listener
@@ -58,8 +65,10 @@ public class Main {
 		com.gmail.trentech.simpletags.Main.registerCommand(CMDNation.cmd, "nation", "n");
 		com.gmail.trentech.simpletags.Main.registerTag(NationTag.class);
 		com.gmail.trentech.simpletags.Main.registerCommand(CMDRank.cmd, "rank", "r");
-
+		
 		ConfigManager.init();
+		
+		Sponge.getEventManager().registerListeners(this, new EventListener());
 		
 		if (Sponge.getPluginManager().isLoaded("helpme")) {
 			Help tagNation = new Help("tag nation", "nation", "View and edit nation tags")
@@ -84,12 +93,10 @@ public class Main {
 
 	@Listener
 	public void onPostInitializationEvent(GamePostInitializationEvent event) {
-		Sponge.getEventManager().registerListeners(this, new EventListener());
-
 		RankTag.init();
 		NationTag.init();
 	}
-
+	
 	public Logger getLog() {
 		return log;
 	}
