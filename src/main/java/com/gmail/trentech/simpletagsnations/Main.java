@@ -15,7 +15,9 @@ import org.spongepowered.api.plugin.Dependency;
 import org.spongepowered.api.plugin.Plugin;
 import org.spongepowered.api.plugin.PluginContainer;
 
-import com.gmail.trentech.helpme.Help;
+import com.gmail.trentech.helpme.help.Argument;
+import com.gmail.trentech.helpme.help.Help;
+import com.gmail.trentech.helpme.help.Usage;
 import com.gmail.trentech.simpletagsnations.commands.CMDNation;
 import com.gmail.trentech.simpletagsnations.commands.CMDRank;
 import com.gmail.trentech.simpletagsnations.tags.NationTag;
@@ -32,7 +34,7 @@ import me.flibio.updatifier.Updatifier;
 		@Dependency(id = "Updatifier", optional = true), 
 		@Dependency(id = "nations", optional = false), 
 		@Dependency(id = "simpletags", optional = false), 
-		@Dependency(id = "helpme", optional = true) 
+		@Dependency(id = "helpme", version = "0.2.1", optional = true) 
 	})
 public class Main {
 
@@ -71,18 +73,22 @@ public class Main {
 		Sponge.getEventManager().registerListeners(this, new EventListener());
 		
 		if (Sponge.getPluginManager().isLoaded("helpme")) {
+			Usage usageNation = new Usage(Argument.of("<nation>", "Specifies the name of a nation"))
+					.addArgument(Argument.of("<tag>", "Set custom tag. Accepts color codes"));
+			
 			Help tagNation = new Help("tag nation", "nation", "View and edit nation tags")
 					.setPermission("simpletags.cmd.tag.nation")
-					.addUsage("/tag nation <nation> <tag>")
-					.addUsage("/t g <nation> <tag>")
+					.setUsage(usageNation)
 					.addExample("/tag nation admin")
 					.addExample("/tag nation admin &e[BOSS]")
 					.addExample("/tag nation admin reset");
 			
+			Usage usageRank = new Usage(Argument.of("<rank>", "Specifies the name of a rank"))
+					.addArgument(Argument.of("<tag>", "Set custom tag. Accepts color codes"));
+			
 			Help tagRank = new Help("tag rank", "rank", "View and edit rank tags")
 					.setPermission("simpletags.cmd.tag.rank")
-					.addUsage("/tag rank <rank> <tag>")
-					.addUsage("/t g <rank> <tag>")
+					.setUsage(usageRank)
 					.addExample("/tag rank admin")
 					.addExample("/tag rank admin &e[BOSS]")
 					.addExample("/tag rank admin reset");
