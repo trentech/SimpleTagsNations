@@ -1,0 +1,50 @@
+plugins {
+  id 'maven'
+  id 'net.ellune.blossom' version '1.0.1'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+archivesBaseName = "${project.id}-${project.apiVersion.split("-")[0]}"
+
+repositories {
+    mavenCentral()
+    maven {
+        name 'Sponge maven repo'
+        url 'http://repo.spongepowered.org/maven'
+    }
+    maven {
+        name 'jitpack.io'
+        url 'https://jitpack.io'
+    }
+}
+
+blossom {
+    String path = "src/main/java/com/gmail/trentech/${project.id}/utils/Resource.java"
+    replaceToken '@project.version@', project.version, path
+	replaceToken '@project.id@', project.id, path
+    replaceToken '@project.name@', project.name, path
+    replaceToken '@project.description@', project.description, path
+	replaceToken '@project.author@', project.author, path
+	replaceToken '@project.url@', project.url, path
+}
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    compile "org.spongepowered:spongeapi:${project.apiVersion}"
+    compile "com.github.TrenTech:SimpleTags:8d2ab6a868"
+    compile "com.github.TrenTech:HelpMe:0.2.1"
+    compile "com.github.Arckenver:Nations:2.0"
+    shade "com.github.Flibio:Updatifier:-SNAPSHOT:api"
+}
+
+jar {
+    configurations.shade.copyRecursive().setTransitive(false).each { artifact ->
+      from (zipTree(artifact))
+    }
+}
